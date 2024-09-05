@@ -1,8 +1,13 @@
 package com.example.demo.service;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.example.demo.model.User;
 import com.example.demo.service.impl.UserServiceImpl;
 
 @SpringBootTest	
@@ -11,4 +16,37 @@ public class UserServiceImplTest {
 	UserServiceImpl usi;
 	
 	
+	 //@Test
+	 public void registerUserTest() { 
+		 User user1 = new User("bob","fom","bob123","321","FIN","bob@com");
+		 usi.registerUser(user1);
+		 User user2 = new User("test","test","test","test","test","test");
+		 usi.registerUser(user2);
+	 }
+	 
+	 @Test
+	 public void loginUserTest() {
+		 assertFalse(usi.loginUser("bob123", "123"));
+		 assertTrue(usi.loginUser("bob123", "321"));
+	 }
+	 
+	 @Test
+	 public void findByUsernameTest() {
+		 
+	 }
+	
+	 @Test
+	 public void findByIdTest() {
+		 
+	 }
+	 
+	 @Test
+	 public void updateUserTest() {
+		 
+	 }
+	 
+	 @Test
+	 public void removeUserTest() {
+		 
+	 }
 }
