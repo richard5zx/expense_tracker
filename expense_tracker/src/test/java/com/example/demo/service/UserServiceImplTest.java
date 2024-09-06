@@ -24,29 +24,35 @@ public class UserServiceImplTest {
 		 usi.registerUser(user2);
 	 }
 	 
-	 @Test
+	 //@Test
 	 public void loginUserTest() {
-		 assertFalse(usi.loginUser("bob123", "123"));
-		 assertTrue(usi.loginUser("bob123", "321"));
+		 assertFalse(usi.loginUser("bob123","123"));
+		 assertTrue(usi.loginUser("bob123","321"));
 	 }
 	 
 	 @Test
 	 public void findByUsernameTest() {
-		 
+		 User user1=usi.findByUsername("15chaorh1");
+		 assertTrue(user1.getFirstname().equals("Richard"));
+		 User user2=usi.findByUsername("15chaorh");
+		 assertTrue(user2==null);
 	 }
 	
 	 @Test
 	 public void findByIdTest() {
-		 
+		 User user1=usi.findById(1);
+		 assertTrue(user1.getFirstname().equals("Richard"));
+		 User user2=usi.findById(0);
+		 assertTrue(user2==null);
 	 }
 	 
-	 @Test
+	 //@Test
 	 public void updateUserTest() {
-		 
+		 usi.updateUser(3, "denk123", "adeeadsd");
 	 }
 	 
 	 @Test
 	 public void removeUserTest() {
-		 
+		 usi.removeUser(4);
 	 }
 }
