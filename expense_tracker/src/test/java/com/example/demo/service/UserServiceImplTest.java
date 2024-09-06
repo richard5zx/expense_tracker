@@ -24,7 +24,7 @@ public class UserServiceImplTest {
 		 usi.registerUser(user2);
 	 }
 	 
-	 //@Test
+	 //@Test0
 	 public void loginUserTest() {
 		 assertFalse(usi.loginUser("bob123","123"));
 		 assertTrue(usi.loginUser("bob123","321"));
