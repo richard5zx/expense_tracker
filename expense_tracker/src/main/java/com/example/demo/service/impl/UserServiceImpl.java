@@ -21,12 +21,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean loginUser(String username, String password) {
+	public User loginUser(String username, String password) {
 		List<User> list=um.selectByUsernameAndPassword(username, password);
 		if(list.size()!=0) {
-			return true;
+			return list.get(0);
 		}
-		return false;
+		return null;
 	}
 
 	@Override

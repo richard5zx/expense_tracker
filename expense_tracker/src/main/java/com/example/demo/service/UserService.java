@@ -10,10 +10,9 @@ public interface UserService {
 	
 	// R
 	public List<User> findAllUser();
-	public boolean loginUser(String username, String password);
+	public User loginUser(String username, String password);
 	public User findByUsername(String username);
 	public User findById(int user_id);
-	
 	
 	// U
 	public void updateUser(int user_id, String username, String password);
