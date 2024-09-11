@@ -17,6 +17,20 @@ public class UserController {
 	UserServiceImpl usi;
 	
 	@CrossOrigin
+	@PostMapping("register")
+	public String register(String firstname, String lastname, String username, String password, String country, String email) {
+		User user=usi.findByUsername(username);
+		if(user!=null) {
+			return "Registration unsuccessful, User already exists<br><a href='http://192.168.1.105:5500/register.html'>Register</a>";
+		} else {	
+			User newUser = new User(firstname, lastname, username, password, country, email);
+			usi.registerUser(newUser);
+			return "User registered<br><a href='http://192.168.1.105:5500/login.html'>Login</a>";
+		}
+		
+	}
+	
+	@CrossOrigin
 	@PostMapping("login")
 	public ModelAndView login(String username, String password, HttpSession session) {
 		User user = usi.loginUser(username, password);
