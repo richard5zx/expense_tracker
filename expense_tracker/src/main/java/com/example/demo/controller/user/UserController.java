@@ -9,6 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.model.User;
 import com.example.demo.service.impl.UserServiceImpl;
 
+import jakarta.servlet.http.HttpSession;
+
 @RestController
 public class UserController {
 	@Autowired
@@ -18,5 +20,12 @@ public class UserController {
 	@PostMapping("login")
 	public ModelAndView login(String username, String password, HttpSession session) {
 		User user = usi.loginUser(username, password);
+		if (user!=null) {
+			session.setAttribute("U", user);
+			return new ModelAndView("loginSuccess");
+		} else {
+			return new ModelAndView("loginError");
+		}
 	}
+	
 }

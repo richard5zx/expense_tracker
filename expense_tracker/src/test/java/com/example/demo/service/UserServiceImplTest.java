@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -26,8 +25,10 @@ public class UserServiceImplTest {
 	 
 	 //@Test0
 	 public void loginUserTest() {
-		 assertFalse(usi.loginUser("bob123","123"));
-		 assertTrue(usi.loginUser("bob123","321"));
+		 User user1  = usi.loginUser("bob123","123");
+		 assertTrue(user1==null);
+		 User user2 = usi.loginUser("bob123","321");
+		 assertTrue(user2!=null);
 	 }
 	 
 	 @Test
