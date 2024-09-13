@@ -24,6 +24,9 @@ public interface ExpenseMapper {
 	@Select("select * from expense where category=#{category}")
 	public List<Expense> selectByCategory(String category);
 	
+	@Select("select * from expense where expense between #{start} and #{end}")
+	public List<Expense> selectByExpense(int start, int end);
+	
 	@Select("select * from expense where currency=#{currency}")
 	public List<Expense> selectByCurrency(String currency);
 	
