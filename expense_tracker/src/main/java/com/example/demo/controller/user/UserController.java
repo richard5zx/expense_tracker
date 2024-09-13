@@ -32,7 +32,7 @@ public class UserController {
 	
 	@CrossOrigin
 	@PostMapping("login")
-	public ModelAndView login(String username, String password, HttpSession session) {
+	public ModelAndView gologin(String username, String password, HttpSession session) {
 		User user = usi.loginUser(username, password);
 		if (user!=null) {
 			session.setAttribute("U", user);
