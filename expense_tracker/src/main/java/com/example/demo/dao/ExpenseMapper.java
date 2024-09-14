@@ -1,5 +1,6 @@
 package com.example.demo.dao;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
@@ -13,13 +14,16 @@ import com.example.demo.model.Expense;
 @Mapper
 public interface ExpenseMapper {
 	// C
-	@Insert("insert into user(user_id,category,expense,currency)"
+	@Insert("insert into expense(user_id,category,expense,currency)"
 			+ " values(#{user_id},#{category},#{expense},#{currency})")
 	public void addExpense(Expense expense);
 	
 	// R
 	@Select("select * from expense")
 	public List<Expense> selectAll();
+	
+	@Select("select * from expense where expense_id=#{expense_id}")
+	public List<Expense> selectByExpenseId(int id);
 	
 	@Select("select * from expense where category=#{category}")
 	public List<Expense> selectByCategory(String category);
@@ -30,8 +34,8 @@ public interface ExpenseMapper {
 	@Select("select * from expense where currency=#{currency}")
 	public List<Expense> selectByCurrency(String currency);
 	
-	@Select("select * from expense where timestamp between #{min} and #{max}")
-	public List<Expense> selectByTime(String min, String max);
+	@Select("select * from expense where timestamp between #{start} and #{end}")
+	public List<Expense> selectByDate(Timestamp start, Timestamp end);
 	
 	// U
 	@Update("update expense set category=#{category},expense=#{expense},category=#{category}")
