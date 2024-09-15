@@ -14,8 +14,8 @@ import com.example.demo.model.Expense;
 @Mapper
 public interface ExpenseMapper {
 	// C
-	@Insert("insert into expense(user_id,category,expense,currency)"
-			+ " values(#{user_id},#{category},#{expense},#{currency})")
+	@Insert("insert into expense(user_id,category,description,expense,currency)"
+			+ " values(#{user_id},#{category},#{description},#{expense},#{currency})")
 	public void addExpense(Expense expense);
 	
 	// R
@@ -28,6 +28,9 @@ public interface ExpenseMapper {
 	@Select("select * from expense where category=#{category}")
 	public List<Expense> selectByCategory(String category);
 	
+	@Select("select * from expense where description like #{description}")
+	public List<Expense> selectByDescription(String description);
+	
 	@Select("select * from expense where expense between #{start} and #{end}")
 	public List<Expense> selectByExpense(int start, int end);
 	
@@ -38,7 +41,7 @@ public interface ExpenseMapper {
 	public List<Expense> selectByDate(Timestamp start, Timestamp end);
 	
 	// U
-	@Update("update expense set category=#{category},expense=#{expense},currency=#{currency} where expense_id=#{expense_id}")
+	@Update("update expense set category=#{category},description=#{description},expense=#{expense},currency=#{currency} where expense_id=#{expense_id}")
 	public void updateExpense(Expense expense);
 	
 	// D
