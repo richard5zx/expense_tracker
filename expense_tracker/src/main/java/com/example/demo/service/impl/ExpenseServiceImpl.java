@@ -34,6 +34,12 @@ public class ExpenseServiceImpl implements ExpenseService {
 	public List<Expense> findByCategory(String category) {
 		return em.selectByCategory(category);
 	}
+	
+	@Override
+	public List<Expense> findByDescription(String description) {
+		String input="%"+description+"%";
+		return em.selectByDescription(input);
+	}
 
 	@Override
 	public List<Expense> findByCurrency(String currency) {
@@ -46,10 +52,11 @@ public class ExpenseServiceImpl implements ExpenseService {
 	}
 
 	@Override
-	public void updateExpense(int expense_id, String category, int expense, String currency) {
+	public void updateExpense(int expense_id, String category, String description, int expense, String currency) {
 		List<Expense> list = em.selectByExpenseId(expense_id);
 		Expense expenses[] = list.toArray(new Expense[1]);
 		expenses[0].setCategory(category);
+		expenses[0].setDescription(description);
 		expenses[0].setExpense(expense);
 		expenses[0].setCurrency(currency);
 		em.updateExpense(expenses[0]);

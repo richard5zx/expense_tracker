@@ -13,11 +13,12 @@ public interface ExpenseService {
 	public List<Expense> findAllExpense();
 	public List<Expense> findByExpenseId(int expense_id);
 	public List<Expense> findByCategory(String category);
+	public List<Expense> findByDescription(String description);
 	public List<Expense> findByCurrency(String currency);
 	public List<Expense> findByDate(Timestamp dateStart, Timestamp dateEnd);
 	
 	// U
-	public void updateExpense(int expense_id, String category, int expense, String currency);
+	public void updateExpense(int expense_id, String category, String Description, int expense, String currency);
 	
 	// D
 	public void removeExpense(int expense_id);
