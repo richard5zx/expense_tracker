@@ -20,9 +20,9 @@ public class ExpenseMapperTest {
 	// C
 	//@Test
 	public void addExpenseTest() {
-		Expense expense1 = new Expense(3,"Utility",17,"AUD");
+		Expense expense1 = new Expense(3,"Utility","Telephone bill",17,"AUD");
 		em.addExpense(expense1);
-		Expense expense2 = new Expense(6,"Gift",20,"EUR");
+		Expense expense2 = new Expense(6,"Gift","Ring",20,"EUR");
 		em.addExpense(expense2);
 	}
 	
@@ -50,6 +50,17 @@ public class ExpenseMapperTest {
 			System.out.println(expense.getExpense());
 		}
 	}
+	
+	// XXXXXXXXXXXXXXXXXXXXXXXTBCXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+	//@Test
+	public void selectByDescriptionTest() {
+		List<Expense> list = em.selectByDescription("urger");
+		System.out.println(list.size());
+		for (Expense expense:list) {
+			System.out.println(expense.getExpense());
+		}
+	}
+	// XXXXXXXXXXXXXXXXXXXXXXXTBCXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 	
 	//@Test
 	public void selectByExpenseTest() {
@@ -79,10 +90,12 @@ public class ExpenseMapperTest {
 	}
 	
 	// U
-	//@Test
+	@Test
 	public void updateExpenseTest() {
-		List<Expense> list = em.selectByExpenseId(4);
+		List<Expense> list = em.selectByExpenseId(2);
 		Expense expense = list.get(0);
+		expense.setCategory("Random");
+		expense.setDescription("Test test test");
 		expense.setCurrency("AUD");
 		expense.setExpense(30);
 		em.updateExpense(expense);
@@ -91,7 +104,8 @@ public class ExpenseMapperTest {
 	// D
 	@Test
 	public void deleteExpenseTest() {
-		em.deleteExpense(4);
+		em.deleteExpense(6);
+		em.deleteExpense(7);
 	}
 	
 }
