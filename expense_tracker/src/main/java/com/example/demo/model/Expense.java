@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import lombok.Data;
 
@@ -11,7 +12,7 @@ public class Expense {
 	private String category;
 	private Integer expense;
 	private String currency;
-	private Timestamp date_time;
+	private Timestamp timestamp;
 	
 	public Expense(Integer user_id, String category, Integer expense, String currency) {
 		super();
@@ -23,7 +24,6 @@ public class Expense {
 	
 	public Expense() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 }
