@@ -67,7 +67,7 @@ public class ExpenseMapperTest {
 		}
 	}
 	
-	@Test
+	//@Test
 	public void selectByDateTest() {
 		Timestamp start = Timestamp.valueOf("2024-09-01 10:15:30");
 		Timestamp end = Timestamp.valueOf("2024-09-14 17:30:30");
@@ -81,17 +81,17 @@ public class ExpenseMapperTest {
 	// U
 	//@Test
 	public void updateExpenseTest() {
-		List<Expense> list = em.selectByExpenseId(2);
+		List<Expense> list = em.selectByExpenseId(4);
 		Expense expense = list.get(0);
 		expense.setCurrency("AUD");
-		expense.setExpense(24);
+		expense.setExpense(30);
 		em.updateExpense(expense);
 	}
 	
 	// D
-	//@Test
+	@Test
 	public void deleteExpenseTest() {
-		em.deleteExpense(2);
+		em.deleteExpense(4);
 	}
 	
 }

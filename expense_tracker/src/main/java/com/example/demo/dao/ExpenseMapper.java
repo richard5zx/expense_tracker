@@ -38,10 +38,10 @@ public interface ExpenseMapper {
 	public List<Expense> selectByDate(Timestamp start, Timestamp end);
 	
 	// U
-	@Update("update expense set category=#{category},expense=#{expense},category=#{category}")
+	@Update("update expense set category=#{category},expense=#{expense},currency=#{currency} where expense_id=#{expense_id}")
 	public void updateExpense(Expense expense);
 	
 	// D
-	@Delete("delete from user where user_id=#{expense_id}")
+	@Delete("delete from expense where expense_id=#{expense_id}")
 	public void deleteExpense(int expense_id);
 }
