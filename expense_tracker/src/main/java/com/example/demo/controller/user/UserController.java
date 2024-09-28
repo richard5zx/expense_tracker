@@ -1,7 +1,10 @@
 package com.example.demo.controller.user;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,6 +20,29 @@ public class UserController {
 	UserServiceImpl usi;
 	
 	@CrossOrigin
+	@GetMapping("register")
+	public boolean register(String firstname, String lastname, String username, String password, String country, String email) {
+		User user = usi.findByUsername(username);
+		if (user == null) {// User doesn't exist in db
+			User newUser = new User(firstname, lastname, username, password, country, email);
+			usi.registerUser(newUser);
+			return true;
+		}
+		return false;
+	}
+	
+	@CrossOrigin
+	@GetMapping("login")
+	public User login(String username, String password, HttpSession session) {
+		User user = usi.loginUser(username, password);
+		if (user!=null) {
+			return user;
+		}
+		return null;
+	}
+	
+	/*
+	@CrossOrigin
 	@PostMapping("register")
 	public String register(String firstname, String lastname, String username, String password, String country, String email) {
 		User user=usi.findByUsername(username);
@@ -29,17 +55,15 @@ public class UserController {
 		}
 		
 	}
-	
 	@CrossOrigin
-	@PostMapping("login")
+	@GetMapping("login")
 	public ModelAndView gologin(String username, String password, HttpSession session) {
 		User user = usi.loginUser(username, password);
 		if (user!=null) {
-			session.setAttribute("U", user);
-			return new ModelAndView("loginSuccess");
+			return new ModelAndView("loginSuccess.html");
 		} else {
-			return new ModelAndView("loginError");
+			return new ModelAndView("loginError.html");
 		}
 	}
-	
+	*/
 }
